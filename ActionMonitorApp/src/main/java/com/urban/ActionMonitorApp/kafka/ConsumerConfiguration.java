@@ -36,17 +36,16 @@ public class ConsumerConfiguration {
 
     @Bean
     public ConsumerFactory<String, Message> consumerFactory() {
-        return new DefaultKafkaConsumerFactory<>(consumerConfigurations(), new StringDeserializer(), new JsonDeserializer<>(Message.class));
-    }
+        JsonDeserializer<Message> deserializer = new JsonDeserializer<>(Message.class, false);
+        deserializer.addTrustedPackages("*");
 
-    @Bean
-    public Map<String, Object> consumerConfigurations() {
         Map<String, Object> configurations = new HashMap<>();
-        configurations.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KAFKA_BROKER);
+        configurations.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         configurations.put(ConsumerConfig.GROUP_ID_CONFIG, KAFKA_GROUP);
         configurations.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        configurations.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+        configurations.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, deserializer);
         configurations.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
-        return configurations;
+
+        return new DefaultKafkaConsumerFactory<>(configurations, new StringDeserializer(), deserializer);
     }
 }

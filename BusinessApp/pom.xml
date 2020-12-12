@@ -6,7 +6,7 @@
 	<groupId>com.urban</groupId>
 	<artifactId>BusinessApp</artifactId>
 	<version>0.0.1</version>
-	<name>DomainApp</name>
+	<name>BusinessApp</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>

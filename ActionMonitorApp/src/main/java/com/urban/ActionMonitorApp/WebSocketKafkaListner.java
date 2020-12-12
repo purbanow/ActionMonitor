@@ -13,9 +13,15 @@ public class WebSocketKafkaListner {
     @Autowired
     SimpMessagingTemplate template;
 
+    @Value("${app.kafka.topic.message}")
+    private static String MESSAGE_TOPIC;
+
+    @Value("${app.kafka.group}")
+    private static String KAFKA_BROKER;
+
     @KafkaListener(
-            topics = "${app.kafka.topic.message}",
-            groupId = "${app.kafka.group}"
+            topics = "message",
+            groupId = "group"
     )
     public void listen(Message message) {
         System.out.println("sending via kafka listener..");
