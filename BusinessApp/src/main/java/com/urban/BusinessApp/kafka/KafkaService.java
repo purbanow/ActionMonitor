@@ -14,8 +14,6 @@ import java.util.concurrent.ExecutionException;
 @Service
 public class KafkaService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MessageController.class);
-
     @Autowired
     private KafkaTemplate<String, Message> kafkaTemplate;
 

@@ -8,6 +8,6 @@ RUN mvn package
 FROM openjdk:8-jdk-alpine
 EXPOSE 8080
 
-COPY --from=maven_build /tmp/target/ActionMonitor-0.0.1.jar ActionMonitor.jar
+COPY --from=maven_build /tmp/target/BusinessApp-0.0.1.jar app.jar
 
-CMD java -jar ActionMonitor.jar
+CMD java -jar app.jar
