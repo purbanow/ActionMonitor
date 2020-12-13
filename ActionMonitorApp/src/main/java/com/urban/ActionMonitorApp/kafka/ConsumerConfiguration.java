@@ -1,6 +1,6 @@
 package com.urban.ActionMonitorApp.kafka;
 
-import com.urban.ActionMonitorApp.model.Message;
+import com.urban.ActionMonitorApp.model.Action;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -28,15 +28,15 @@ public class ConsumerConfiguration {
     private String KAFKA_GROUP;
 
     @Bean
-    ConcurrentKafkaListenerContainerFactory<String, Message> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, Message> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    ConcurrentKafkaListenerContainerFactory<String, Action> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, Action> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }
 
     @Bean
-    public ConsumerFactory<String, Message> consumerFactory() {
-        JsonDeserializer<Message> deserializer = new JsonDeserializer<>(Message.class, false);
+    public ConsumerFactory<String, Action> consumerFactory() {
+        JsonDeserializer<Action> deserializer = new JsonDeserializer<>(Action.class, false);
         deserializer.addTrustedPackages("*");
 
         Map<String, Object> configurations = new HashMap<>();

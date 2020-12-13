@@ -1,14 +1,19 @@
-package com.urban.ActionMonitorApp.model;
+package com.urban.BusinessApp.model;
 
-public class Message {
+import org.springframework.data.annotation.Id;
+
+public class Action {
+
+    @Id
     private String id;
-    private String sender;
+
+    private String issuer;
     private String content;
 
-    public Message() {}
+    public Action() {}
 
-    public Message(String sender, String content) {
-        this.sender = sender;
+    public Action(String issuer, String content) {
+        this.issuer = issuer;
         this.content = content;
     }
 
@@ -20,12 +25,12 @@ public class Message {
         this.id = id;
     }
 
-    public String getSender() {
-        return sender;
+    public String getIssuer() {
+        return issuer;
     }
 
-    public void setSender(String sender) {
-        this.sender = sender;
+    public void setIssuer(String issuer) {
+        this.issuer = issuer;
     }
 
     public String getContent() {
@@ -38,9 +43,9 @@ public class Message {
 
     @Override
     public String toString() {
-        return "Message{" +
+        return "Action{" +
                 "id='" + id + '\'' +
-                ", sender='" + sender + '\'' +
+                ", issuer='" + issuer + '\'' +
                 ", content='" + content + '\'' +
                 '}';
     }

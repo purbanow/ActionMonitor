@@ -1,22 +1,22 @@
 import React, {useState} from 'react';
 import SockJsClient from 'react-stomp';
-import './App.css';
-import Messages from './components/Messages/Messages';
+import ActionsComponent from './ActionsComponent';
 
 
-const SOCKET_URL = 'http://localhost:8090/ws-chat/';
+const SOCKET_URL = 'http://localhost:8090/actions/';
+
 
 const App = () => {
-    const [messages, setMessages] = useState([])
+    const [actions, setActions] = useState([])
 
     let onConnected = () => {
-        console.log("Connected!!")
-    }
+        console.log("Connected!")
+    };
 
-    let onMessageReceived = (msg) => {
-        console.log('New Message Received!!', msg);
-        setMessages(messages.concat(msg));
-    }
+    let onMessageReceived = (action) => {
+        console.log('Received new action!!', action);
+        setActions(actions.concat(action));
+    };
 
     return (
         <div className="App">
@@ -26,13 +26,11 @@ const App = () => {
                 onConnect={onConnected}
                 onDisconnect={console.log("Disconnected!")}
                 onMessage={msg => onMessageReceived(msg)}
-                debug={true}
+                debug={false}
             />
-            <Messages
-                messages={messages}
-            />
+            <ActionsComponent actions={actions}/>
         </div>
     )
-}
+};
 
 export default App;

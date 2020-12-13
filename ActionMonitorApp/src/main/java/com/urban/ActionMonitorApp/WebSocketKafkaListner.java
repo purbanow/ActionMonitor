@@ -1,6 +1,6 @@
 package com.urban.ActionMonitorApp;
 
-import com.urban.ActionMonitorApp.model.Message;
+import com.urban.ActionMonitorApp.model.Action;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -13,18 +13,18 @@ public class WebSocketKafkaListner {
     @Autowired
     SimpMessagingTemplate template;
 
-    @Value("${app.kafka.topic.message}")
-    private static String MESSAGE_TOPIC;
+    @Value("${app.kafka.topic.actions}")
+    private static String action_TOPIC;
 
     @Value("${app.kafka.group}")
     private static String KAFKA_BROKER;
 
     @KafkaListener(
-            topics = "message",
-            groupId = "group"
+            topics = "actions",
+            groupId = "action-monitor"
     )
-    public void listen(Message message) {
+    public void listen(Action action) {
         System.out.println("sending via kafka listener..");
-        template.convertAndSend("/topic/group", message);
+        template.convertAndSend("/topic/group", action);
     }
 }

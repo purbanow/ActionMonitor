@@ -1,6 +1,6 @@
 package com.urban.BusinessApp.kafka;
 
-import com.urban.BusinessApp.model.Message;
+import com.urban.BusinessApp.model.Action;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -23,7 +23,7 @@ public class ProducerConfiguration {
     private String KAFKA_BROKER;
 
     @Bean
-    public ProducerFactory<String, Message> producerFactory() {
+    public ProducerFactory<String, Action> producerFactory() {
         return new DefaultKafkaProducerFactory<>(producerConfigurations());
     }
 
@@ -37,7 +37,7 @@ public class ProducerConfiguration {
     }
 
     @Bean
-    public KafkaTemplate<String, Message> kafkaTemplate() {
+    public KafkaTemplate<String, Action> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 }

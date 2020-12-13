@@ -1,9 +1,6 @@
 package com.urban.BusinessApp.kafka;
 
-import com.urban.BusinessApp.model.Message;
-import com.urban.BusinessApp.controller.MessageController;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.urban.BusinessApp.model.Action;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -15,11 +12,11 @@ import java.util.concurrent.ExecutionException;
 public class KafkaService {
 
     @Autowired
-    private KafkaTemplate<String, Message> kafkaTemplate;
+    private KafkaTemplate<String, Action> kafkaTemplate;
 
-    public void send(Message message, String topic) {
+    public void send(Action action, String topic) {
         try {
-            SendResult<String, Message> result = kafkaTemplate.send(topic, message).get();
+            SendResult<String, Action> result = kafkaTemplate.send(topic, action).get();
         } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException("Not able to send message to kafka");
         }
