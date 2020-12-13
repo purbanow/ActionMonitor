@@ -23,12 +23,14 @@ public class ActionController {
 
     @PostMapping(value = "/action")
     public ResponseEntity<Action> createAction(@RequestBody Action action) {
+        LOG.info("Started creating an action: {}", action);
         Action resultAction = actionService.createAction(action);
         return new ResponseEntity<>(resultAction, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/action/{id}")
     public ResponseEntity<Action> updateAction(@PathVariable String id, @RequestBody Action action) {
+        LOG.info("Started updating an action: {}", action);
         Action resultAction = actionService.updateAction(id, action);
         return new ResponseEntity<>(resultAction, HttpStatus.CREATED);
     }

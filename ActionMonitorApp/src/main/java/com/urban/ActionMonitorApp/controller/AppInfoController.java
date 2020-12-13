@@ -12,11 +12,15 @@ public class AppInfoController {
 
     @GetMapping(value = "/status")
     public String status() {
+        LOG.info("Started gathering status");
+//      TODO think about of returning status of different services (kafka etc)
         return "OK";
     }
 
     @GetMapping(value = "/version")
     public String version() {
+        LOG.info("Started returning version");
+//      TODO think about of returning versions of specific versions (kafka etc)
         return this.getClass().getPackage().getImplementationVersion();
     }
 

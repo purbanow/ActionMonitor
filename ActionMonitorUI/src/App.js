@@ -3,7 +3,7 @@ import SockJsClient from 'react-stomp';
 import ActionsComponent from './ActionsComponent';
 
 
-const SOCKET_URL = 'http://localhost:8090/actions/';
+const SOCKET_URL = 'http://localhost:8090/ws/';
 
 
 const App = () => {
@@ -22,7 +22,7 @@ const App = () => {
         <div className="App">
             <SockJsClient
                 url={SOCKET_URL}
-                topics={['/topic/group']}
+                topics={['/actions']}
                 onConnect={onConnected}
                 onDisconnect={console.log("Disconnected!")}
                 onMessage={msg => onMessageReceived(msg)}

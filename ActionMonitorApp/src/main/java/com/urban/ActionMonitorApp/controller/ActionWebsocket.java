@@ -1,4 +1,4 @@
-package com.urban.ActionMonitorApp;
+package com.urban.ActionMonitorApp.controller;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -8,11 +8,11 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 
 @Configuration
 @EnableWebSocketMessageBroker
-public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer {
+public class ActionWebsocket implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/actions")
+        registry.addEndpoint("/ws")
                 .setAllowedOrigins("http://localhost:3000") //TODO make it more production ready
                 .withSockJS();
     }
@@ -20,6 +20,6 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         registry.setApplicationDestinationPrefixes("/app");
-        registry.enableSimpleBroker("/topic/");
+        registry.enableSimpleBroker("/");
     }
 }
