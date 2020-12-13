@@ -6,7 +6,7 @@ WORKDIR /tmp/
 RUN mvn package
 
 FROM openjdk:8-jdk-alpine
-EXPOSE 8080
+EXPOSE 8090
 
 COPY --from=maven_build /tmp/target/ActionMonitorApp-0.0.1.jar app.jar
 

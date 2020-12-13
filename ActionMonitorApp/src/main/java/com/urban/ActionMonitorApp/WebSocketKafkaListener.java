@@ -23,9 +23,6 @@ public class WebSocketKafkaListener {
     @Value("${app.kafka.topic.actions}")
     private String ACTIONS_TOPIC;
 
-    @Value("${app.kafka.group}")
-    private String KAFKA_BROKER;
-
     @KafkaListener(
             topics = "actions", //TODO make it to use "${app.kafka.topic.actions}"
             groupId = "action-monitor" //TODO make it to use "${app.kafka.group}"

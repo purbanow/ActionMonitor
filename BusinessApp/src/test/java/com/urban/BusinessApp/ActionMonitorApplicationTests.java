@@ -1,4 +1,4 @@
-package test.java.com.urban.ActionMonitorApp;
+package com.urban.BusinessApp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
