@@ -53,7 +53,7 @@ As showed in the above diagram, architecture consists of 5 containerized compone
 
 ### Setup
 1. Install docker and docker-compose
-1. Run `./setup.sh` (in the future `docker-compose` up but currently I've issue with one of the containers.More info inside docker.compose.yml)
+1. Run `./setup.sh` (in the future `docker-compose up` but currently I've an issue with one of the containers.More info inside docker.compose.yml)
 
 note: 
 * After finishing playing with apps, you can run `docker-compose down` to teardown all apps. 
